@@ -7,15 +7,21 @@
       (ngSubmit)="onSubmit(noteForm)" 
       class="flex flex-col"
     >
+    <div class="mb-6 flex flex-col">
       <label for="title" class="text-2xl mb-2">Title:</label>
       <input 
         [(ngModel)]="noteCreated.title"
+        [ngClass]="{'input-error': !noteForm.valid && noteForm.touched}"
         name="title" 
         type="text" 
         placeholder="Note title" 
-        class="input input-bordered w-full max-w-xs mb-6" 
+        class="input input-bordered w-full" 
         required
       />
+      <ng-container *ngIf="!noteForm.valid && noteForm.touched">
+        <label for="title" class="text-right text-error mt-2">Title is required</label>
+      </ng-container>
+    </div>
       <label for="content" class="text-2xl mb-2">Content:</label>
       <textarea 
         [(ngModel)]="noteCreated.content"
