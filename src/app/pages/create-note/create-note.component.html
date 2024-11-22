@@ -2,11 +2,27 @@
   <app-tool-bar [showBackBtn]="true" [title]="'Create Note'"></app-tool-bar>
 
   <div class="container mx-auto p-3">
-    <form action="" class="flex flex-col">
+    <form 
+      #noteForm="ngForm" 
+      (ngSubmit)="onSubmit(noteForm)" 
+      class="flex flex-col"
+    >
       <label for="title" class="text-2xl mb-2">Title:</label>
-      <input name="title" type="text" placeholder="Note title" class="input input-bordered w-full max-w-xs mb-6" />
+      <input 
+        [(ngModel)]="noteCreated.title"
+        name="title" 
+        type="text" 
+        placeholder="Note title" 
+        class="input input-bordered w-full max-w-xs mb-6" 
+      />
       <label for="content" class="text-2xl mb-2">Content:</label>
-      <textarea name="content" class="textarea textarea-bordered mb-6" placeholder="Note Content" rows="10"></textarea>
+      <textarea 
+        [(ngModel)]="noteCreated.content"
+        name="content" 
+        class="textarea textarea-bordered mb-6" 
+        placeholder="Note Content" 
+        rows="10"
+      ></textarea>
       <div class="flex justify-end">
         <button class="btn btn-outline btn-primary">Create Note</button>
       </div>
