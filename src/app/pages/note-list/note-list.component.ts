@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { CardListComponent } from '../../components/card-list/card-list.component';
 import { ToolBarComponent } from '../../components/tool-bar/tool-bar.component';
 import { NotesService } from '../../services/notes.service';
 import { Note } from '../../models/note.model';
+import { NoteCardComponent } from '../../components/note-card/note-card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-note-list',
-  imports: [CardListComponent, ToolBarComponent],
+  imports: [ ToolBarComponent, NoteCardComponent, CommonModule],
   templateUrl: './note-list.component.html',
   styleUrl: './note-list.component.css',
 })
