@@ -1,12 +1,21 @@
 <div class="p-3" [ngStyle]="{'max-width': cardWidth}">
-  <div class="card bg-neutral text-neutral-content" [ngStyle]="{'height': cardHeight}">
-    <div class="card-body items-center text-center">
+  <div class="card bg-primary text-primary-content" [ngStyle]="{'height': cardHeight}">
+    <!-- <div class="card-body items-center text-center">
       <h2 class="card-title">{{note.title}}</h2>
       <p>{{note.content}}</p>
       <p>{{note.date}}</p>
       <div class="card-actions justify-end">
         <button class="btn btn-primary">Accept</button>
         <button class="btn btn-ghost">Deny</button>
+      </div>
+    </div> -->
+    <div class="card-body">
+      <h2 class="card-title text-xl">{{note.title}}</h2>
+      <p>{{note.date}}</p>
+      <p>{{note.content}}</p>
+      <div class="card-actions justify-end">
+        <button class="btn">Edit</button>
+        <button class="btn btn-error">Delete</button>
       </div>
     </div>
   </div>
