@@ -2,3 +2,15 @@
   <app-tool-bar [showCreateBtn]="true" [title]="'My notes'"></app-tool-bar>
   <app-card-list [notes]="notes"></app-card-list>
 </div>
+
+<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+<div class="modal opacity-100">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Delete note</h3>
+    <p class="py-4">Are you sure to delete note?</p>
+    <div class="modal-action">
+      <button class="btn">Cancel</button>
+      <button class="btn btn-error">Delete</button>
+    </div>
+  </div>
+</div>
