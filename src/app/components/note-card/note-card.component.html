@@ -1,5 +1,5 @@
-<div class="p-3" [ngStyle]="{'max-width': cardWidth}">
-  <div class="card bg-primary text-primary-content" [ngStyle]="{'height': cardHeight}">
+<div class="p-3" [ngStyle]="{'width': cardWidth}">
+  <div class="card bg-accent text-accent-content" [ngStyle]="{'height': cardHeight}">
     <!-- <div class="card-body items-center text-center">
       <h2 class="card-title">{{note.title}}</h2>
       <p>{{note.content}}</p>
@@ -11,7 +11,7 @@
     </div> -->
     <div class="card-body">
       <h2 class="card-title text-xl">{{note.title}}</h2>
-      <p>{{note.date}}</p>
+      <p>{{note.date | date}}</p>
       <p>{{note.content}}</p>
       <div class="card-actions justify-end">
         <button class="btn">Edit</button>
