@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { NoteCardComponent } from '../note-card/note-card.component';
 
 export interface Note {
   id: string;
@@ -10,9 +11,10 @@ export interface Note {
 
 @Component({
   selector: 'app-card-list',
-  imports: [CommonModule],
+  imports: [CommonModule, NoteCardComponent],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css',
+  standalone: true
 })
 export class CardListComponent {
   note: Note = {
