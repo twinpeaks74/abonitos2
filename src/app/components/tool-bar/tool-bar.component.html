@@ -1,9 +1,13 @@
 <div class="container mx-auto ">
   <div class="flex justify-between p-3 my-4">
     <div class="flex items-center">
-      <button class="btn btn-neutral" routerLink="/">Back</button>
-      <h1 class="text-5xl ml-4">Titulo</h1>
+      <ng-container *ngIf="showBackBtn">
+        <button class="btn btn-neutral mr-4" routerLink="/">Back</button>
+      </ng-container>
+      <h1 class="text-5xl">{{title}}</h1>
     </div>
-    <a class="btn btn-primary" routerLink="/create-note">Create Note</a>
+    <ng-container *ngIf="showCreateBtn">
+      <a class="btn btn-primary" routerLink="/create-note">Create Note</a>
+    </ng-container>
   </div>
 </div>
