@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Note } from '../card-list/card-list.component';
 import { CommonModule } from '@angular/common';
+import { Note } from '../../models/note.model';
 
 @Component({
   standalone: true,
