@@ -1,6 +1,6 @@
 <!-- Contenedor de lista -->
 <div class="container mx-auto ">
-  
+
   <!-- Contenedor Grid -->
   <div class="flex flex-wrap">
 
@@ -8,8 +8,9 @@
     <div class="p-3">
       <div class="card bg-neutral text-neutral-content">
         <div class="card-body items-center text-center">
-          <h2 class="card-title">Cookies!</h2>
-          <p>We are using cookies for no reason.</p>
+          <h2 class="card-title">{{note.title}}</h2>
+          <p>{{note.content}}</p>
+          <p>{{note.date}}</p>
           <div class="card-actions justify-end">
             <button class="btn btn-primary">Accept</button>
             <button class="btn btn-ghost">Deny</button>
