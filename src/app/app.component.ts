@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { CardListComponent } from './card-list/card-list.component';
-import { ToolBarComponent } from './tool-bar/tool-bar.component';
+import { NoteListComponent } from './pages/note-list/note-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, CardListComponent, ToolBarComponent],
+  imports: [RouterOutlet, NoteListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone: true
