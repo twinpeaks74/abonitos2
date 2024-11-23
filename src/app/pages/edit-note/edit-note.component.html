@@ -1,1 +1,40 @@
-<p>edit-note works!</p>
+<div class="mt-10">
+  <app-tool-bar [showBackBtn]="true" [title]="'Edit Note'"></app-tool-bar>
+
+  <div class="container mx-auto p-3">
+    <form 
+      [formGroup]="editNoteForm"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-col"
+    >
+    <div class="mb-6 flex flex-col">
+      <label for="title" class="text-2xl mb-2">Title:</label>
+      <input 
+        formControlName="title"
+        name="title" 
+        type="text" 
+        placeholder="Note title" 
+        class="input input-bordered w-full" 
+        required
+      />
+      <ng-container *ngIf="editNoteForm.get('title')?.touched && editNoteForm.get('title')?.invalid">
+        <label for="title" class="text-right text-error mt-2">Title is required</label>
+      </ng-container>
+    </div>
+      <label for="content" class="text-2xl mb-2">Content:</label>
+      <textarea 
+        formControlName="content"
+        name="content" 
+        class="textarea textarea-bordered mb-6" 
+        placeholder="Note Content" 
+        rows="10"
+      ></textarea>
+      <div class="flex justify-end">
+        <button 
+          [disabled]="editNoteForm.invalid"
+          class="btn btn-outline btn-primary"
+        >Create Note</button>
+      </div>
+    </form>
+  </div>
+</div>

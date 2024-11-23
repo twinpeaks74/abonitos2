@@ -6,6 +6,6 @@ import { NoteListComponent } from './pages/note-list/note-list.component';
 export const routes: Routes = [
   {path: '', component: NoteListComponent},
   {path: 'create-note', component: CreateNoteComponent},
-  {path: 'edit-note', component: EditNoteComponent},
+  {path: 'edit-note/:id', component: EditNoteComponent},
   {path: '**', redirectTo: ''},
 ];
