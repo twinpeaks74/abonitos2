@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Note } from '../models/note.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotesService {
   notes: Note[] = [
     {
       id: '02ea161d-c4d7-4ff9-93ac-61b33ed7be99',
       title: 'in aliquam voluptatem',
-      content: 'Ad perspiciatis a maiores et eos repudiandae officiis et rerum.',
+      content:
+        'Ad perspiciatis a maiores et eos repudiandae officiis et rerum.',
       date: 'Sun Aug 18 2024 08:01:43 GMT-0400 (Bolivia Time)',
     },
     {
@@ -87,15 +88,25 @@ export class NotesService {
       date: 'Tue Oct 08 2024 21:31:58 GMT-0400 (Bolivia Time)',
     },
   ];
-  
+
   createNote(note: Partial<Note>) {
     const newNote: Note = {
       id: (this.notes.length + 1).toString(),
       title: note.title ?? '',
       content: note.content ?? '',
-      date: (new Date()).toString()
-    }
+      date: new Date().toString(),
+    };
 
-    this.notes.push(newNote)
+    this.notes.push(newNote);
+  }
+
+  deleteNote(noteId: string): void {
+    this.notes = this.notes.filter((note) => {
+      return note.id !== noteId;
+    });
+  }
+
+  selectNote(noteId: string): Note | undefined {
+    return this.notes.find((note) => note.id === noteId);
   }
 }

@@ -15,7 +15,7 @@
       <p>{{note.content}}</p>
       <div class="card-actions justify-end">
         <button class="btn">Edit</button>
-        <button class="btn btn-error">Delete</button>
+        <button (click)="onDelete(note.id)" class="btn btn-error">Delete</button>
       </div>
     </div>
   </div>

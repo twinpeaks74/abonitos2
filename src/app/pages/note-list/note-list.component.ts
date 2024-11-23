@@ -7,14 +7,33 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-note-list',
-  imports: [ ToolBarComponent, NoteCardComponent, CommonModule],
+  imports: [ToolBarComponent, NoteCardComponent, CommonModule],
   templateUrl: './note-list.component.html',
   styleUrl: './note-list.component.css',
 })
 export class NoteListComponent {
+  displayDeleteModal = false;
   notes!: Note[];
+  selectedNoteForDelete!: Note
 
   constructor(private noteService: NotesService) {
     this.notes = this.noteService.notes;
+  }
+
+  selectNoteForDelete(noteId: string): void {
+    const noteFound = this.noteService.selectNote(noteId)
+    if (noteFound) {
+      this.selectedNoteForDelete = noteFound;
+    }
+    this.toggleModal();
+  }
+
+  deleteNote(noteId: string): void {
+    this.noteService.deleteNote(noteId);
+    this.toggleModal();
+  }
+
+  toggleModal(): void {
+    this.displayDeleteModal = !this.displayDeleteModal;
   }
 }
