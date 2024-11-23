@@ -22,7 +22,6 @@ export class CreateNoteComponent {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      console.log(this.noteCreated);
       this.noteService.createNote(this.noteCreated);
       this.router.navigate(['/']);
     }

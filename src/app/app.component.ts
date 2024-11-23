@@ -13,9 +13,8 @@ import { NotesService } from './services/notes.service';
 export class AppComponent implements OnInit{
   constructor(private noteService: NotesService) {
   }
+  
   ngOnInit(): void {
-    console.log(localStorage);
-    
     this.noteService.loadNotes(localStorage);
   }
 }
