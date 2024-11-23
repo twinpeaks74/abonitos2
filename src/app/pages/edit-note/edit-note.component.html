@@ -11,6 +11,7 @@
       <label for="title" class="text-2xl mb-2">Title:</label>
       <input 
         formControlName="title"
+        [ngClass]="{'input-error': editNoteForm.get('title')?.touched && editNoteForm.get('title')?.invalid}"
         name="title" 
         type="text" 
         placeholder="Note title" 
@@ -33,7 +34,7 @@
         <button 
           [disabled]="editNoteForm.invalid"
           class="btn btn-outline btn-primary"
-        >Create Note</button>
+        >Edit Note</button>
       </div>
     </form>
   </div>

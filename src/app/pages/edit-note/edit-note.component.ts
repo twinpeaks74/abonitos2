@@ -3,13 +3,12 @@ import { ToolBarComponent } from '../../components/tool-bar/tool-bar.component';
 import {
   FormBuilder,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Note } from '../../models/note.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotesService } from '../../services/notes.service';
 
 @Component({
   selector: 'app-edit-note',
@@ -20,7 +19,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditNoteComponent implements OnInit {
   editNoteForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private noteService: NotesService,
+    private router: Router
+  ) {
     this.editNoteForm = fb.group({
       title: ['', Validators.required],
       content: [''],
@@ -28,14 +32,21 @@ export class EditNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const noteId = this.router.snapshot.paramMap.get('id') || '';
-    console.log('Note ID:', noteId);
+    const noteId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (noteId) {
+      const noteForEdit = this.noteService.selectNote(noteId)!;
+      if (noteForEdit) {
+        this.editNoteForm.get('title')?.setValue(noteForEdit.title);
+        this.editNoteForm.get('content')?.setValue(noteForEdit.content);
+      } else {
+        this.router.navigate(['/'])
+      }
+    }
   }
 
   onSubmit() {
     if (this.editNoteForm.valid) {
-      console.log();
-      this.editNoteForm.value;
+      console.log(this.editNoteForm.value);
     }
   }
 }
