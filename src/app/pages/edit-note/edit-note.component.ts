@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToolBarComponent } from '../../components/tool-bar/tool-bar.component';
 import {
   FormBuilder,
@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Note } from '../../models/note.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-note',
@@ -16,14 +17,19 @@ import { Note } from '../../models/note.model';
   templateUrl: './edit-note.component.html',
   styleUrl: './edit-note.component.css',
 })
-export class EditNoteComponent {
+export class EditNoteComponent implements OnInit {
   editNoteForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: ActivatedRoute) {
     this.editNoteForm = fb.group({
       title: ['', Validators.required],
       content: [''],
     });
+  }
+
+  ngOnInit(): void {
+    const noteId = this.router.snapshot.paramMap.get('id') || '';
+    console.log('Note ID:', noteId);
   }
 
   onSubmit() {
