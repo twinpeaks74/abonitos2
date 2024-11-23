@@ -7,6 +7,9 @@
     <div class="flex flex-wrap" [ngStyle]="{'justify-content': 'center'}">
 
       <!-- Tarjeta -->
+      <ng-container *ngIf="notes.length === 0">
+        <h1 class="text-xl">No notes yet</h1>
+      </ng-container>
       <ng-container *ngFor="let note of notes">
           <app-note-card [note]="note" (deleteEvent)="selectNoteForDelete($event)"></app-note-card>
       </ng-container>
