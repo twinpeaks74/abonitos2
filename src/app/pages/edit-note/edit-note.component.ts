@@ -18,6 +18,7 @@ import { NotesService } from '../../services/notes.service';
 })
 export class EditNoteComponent implements OnInit {
   editNoteForm: FormGroup;
+  noteId!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -32,21 +33,22 @@ export class EditNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const noteId = this.activatedRoute.snapshot.paramMap.get('id');
-    if (noteId) {
-      const noteForEdit = this.noteService.selectNote(noteId)!;
+    this.noteId = this.activatedRoute.snapshot.paramMap.get('id')!;
+    if (this.noteId) {
+      const noteForEdit = this.noteService.selectNote(this.noteId)!;
       if (noteForEdit) {
         this.editNoteForm.get('title')?.setValue(noteForEdit.title);
         this.editNoteForm.get('content')?.setValue(noteForEdit.content);
       } else {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       }
     }
   }
 
   onSubmit() {
     if (this.editNoteForm.valid) {
-      console.log(this.editNoteForm.value);
+      this.noteService.editNote(this.noteId, this.editNoteForm.value);
+      this.router.navigate(['/'])
     }
   }
 }

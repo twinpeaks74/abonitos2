@@ -18,6 +18,21 @@ export class NotesService {
     this.notes.push(newNote);
   }
 
+  editNote(noteId: string, note: Partial<Note>): void {
+    let noteEdited = this.selectNote(noteId);
+    if (noteEdited) {
+      noteEdited = {
+        ...noteEdited,
+        ...note,
+        date: new Date().toString(),
+      };
+    }
+    const notePosition = this.notes.findIndex(note => note.id === noteId);
+    if (notePosition !== -1) {
+      this.notes[notePosition] = noteEdited!
+    }
+  }
+
   deleteNote(noteId: string): Note[] {
     this.notes = this.notes.filter((note) => {
       return note.id !== noteId;
