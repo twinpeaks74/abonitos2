@@ -100,10 +100,11 @@ export class NotesService {
     this.notes.push(newNote);
   }
 
-  deleteNote(noteId: string): void {
+  deleteNote(noteId: string): Note[] {
     this.notes = this.notes.filter((note) => {
       return note.id !== noteId;
     });
+    return this.notes;
   }
 
   selectNote(noteId: string): Note | undefined {

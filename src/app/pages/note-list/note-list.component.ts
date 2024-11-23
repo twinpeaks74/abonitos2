@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { ToolBarComponent } from '../../components/tool-bar/tool-bar.component';
 import { NotesService } from '../../services/notes.service';
 import { Note } from '../../models/note.model';
@@ -9,19 +9,21 @@ import { CommonModule } from '@angular/common';
   selector: 'app-note-list',
   imports: [ToolBarComponent, NoteCardComponent, CommonModule],
   templateUrl: './note-list.component.html',
-  styleUrl: './note-list.component.css',
+  styleUrl: './note-list.component.css'
 })
 export class NoteListComponent {
   displayDeleteModal = false;
   notes!: Note[];
-  selectedNoteForDelete!: Note
+  selectedNoteForDelete!: Note;
 
-  constructor(private noteService: NotesService) {
+  constructor(
+    private noteService: NotesService
+  ) {
     this.notes = this.noteService.notes;
   }
 
   selectNoteForDelete(noteId: string): void {
-    const noteFound = this.noteService.selectNote(noteId)
+    const noteFound = this.noteService.selectNote(noteId);
     if (noteFound) {
       this.selectedNoteForDelete = noteFound;
     }
@@ -29,7 +31,7 @@ export class NoteListComponent {
   }
 
   deleteNote(noteId: string): void {
-    this.noteService.deleteNote(noteId);
+    this.notes = this.noteService.deleteNote(noteId);
     this.toggleModal();
   }
 
